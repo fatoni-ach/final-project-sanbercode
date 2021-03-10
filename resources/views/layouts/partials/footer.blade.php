@@ -12,8 +12,8 @@
             <div class="col-lg-6">
                 <div class="footer__nav">
                     <ul>
-                        <li class="active"><a href="#">Homepage</a></li>
-                        <li><a href="#">Review</a></li>
+                        <li class="active"><a href="{{route('homepage')}}">Homepage</a></li>
+                        <li><a href="{{route('review')}}">Review</a></li>
                     </ul>
                 </div>
             </div>

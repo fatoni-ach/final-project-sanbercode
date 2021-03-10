@@ -37,11 +37,11 @@
             <div class="col-lg-6">
                 <div class="login__register">
                     <h3>Dont’t Have An Account?</h3>
-                    <a href="#" class="primary-btn">Register Now</a>
+                    <a href="{{route('signup')}}" class="primary-btn">Register Now</a>
                 </div>
             </div>
         </div>
-        <div class="login__social">
+        {{-- <div class="login__social">
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-6">
                     <div class="login__social__links">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </section>
 @endsection
