@@ -12,5 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+
+Route::get('/login', function() {
+    return view('login');
+});
+
+Route::get('/signup', function() {
+    return view('signup');
+});
+
+Route::get('/review', function() {
+    return view('review');
+});
+
+Route::get('/review_detail', function() {
+    return view('review_detail');
 });
