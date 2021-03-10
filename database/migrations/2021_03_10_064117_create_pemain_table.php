@@ -13,11 +13,11 @@ class CreatePemainTable extends Migration
      */
     public function up()
     {
-        Schema::create('pemain', function (Blueprint $table) {
+        Schema::create('pemains', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
             $table->unsignedBigInteger('post_film_id');
-            $table->foreign('post_film_id')->references('id')->on('post_film');
+            $table->foreign('post_film_id')->references('id')->on('post_films');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreatePemainTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pemain');
+        Schema::dropIfExists('pemains');
     }
 }

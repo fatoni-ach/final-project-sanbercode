@@ -13,14 +13,14 @@ class CreatePostFilmTable extends Migration
      */
     public function up()
     {
-        Schema::create('post_film', function (Blueprint $table) {
+        Schema::create('post_films', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('judul');
             $table->text('sinopsis');
             $table->string('foto');
             $table->string('tahun');
             $table->unsignedBigInteger('profil_id');
-            $table->foreign('profil_id')->references('id')->on('profil');
+            $table->foreign('profil_id')->references('id')->on('profils');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreatePostFilmTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_film');
+        Schema::dropIfExists('post_films');
     }
 }

@@ -13,13 +13,13 @@ class CreateKomentarTable extends Migration
      */
     public function up()
     {
-        Schema::create('komentar', function (Blueprint $table) {
+        Schema::create('komentars', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('isi');
             $table->unsignedBigInteger('post_film_id');
-            $table->foreign('post_film_id')->references('id')->on('post_film');
+            $table->foreign('post_film_id')->references('id')->on('post_films');
             $table->unsignedBigInteger('profil_id');
-            $table->foreign('profil_id')->references('id')->on('profil');
+            $table->foreign('profil_id')->references('id')->on('profils');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateKomentarTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('komentar');
+        Schema::dropIfExists('komentars');
     }
 }
