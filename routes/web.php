@@ -23,7 +23,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profil/edit','ProfilController@edit')->name('profil.edit');
     Route::put('/profil/edit','ProfilController@update')->name('profil.update');
     Route::post('/komentar/{profil_id}/create','KomentarController@create')->name('komentar.create');
-
+    Route::put('/komentar/{komentar_id}','KomentarController@update')->name('komentar.update');
+    Route::get('/komentar/{komentar_id}','KomentarController@destroy')->name('komentar.delete');
+    Route::post('/rating/create','RatingController@create')->name('rating.create');
 });
 
 

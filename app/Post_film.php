@@ -8,7 +8,7 @@ class Post_film extends Model
 {
     public function ratings()
     {
-        return $this->belongsToMany('App\Profil', 'ratings', 'post_film_id', 'profil_id');
+        return $this->belongsToMany('App\Profil', 'ratings', 'post_film_id', 'profil_id')->withPivot('point');
     }
     public function profil()
     {

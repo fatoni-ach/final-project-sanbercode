@@ -22,13 +22,15 @@
                         </div>
                         <div class="anime__details__rating">
                             <div class="rating">
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star-half-o"></i></a>
+                                @for ($i = 0; $i < 5; $i++)
+                                    @if ($rating->avg('point') >= $i+1)
+                                    <a href=""><i class="fa fa-star"></i></a>
+                                    @else
+                                    <a href=""><i class="fa fa-star-o"></i></a>
+                                    @endif
+                                @endfor
                             </div>
-                            <span>{{count($post->ratings)}} Star</span>
+                            <span>{{number_format($rating->avg('point'), 1)}} average star</span>
                         </div>
                         <p>{{$post->sinopsis}}</p>
                         <div class="anime__details__widget">
@@ -36,6 +38,27 @@
                                 <div class="col-lg-6 col-md-6">
                                     <ul>
                                         <li><span>Tahun: </span> {{$post->tahun}}</li>
+                                        @auth
+                                        <form action="{{Route('rating.create')}}" class="form-inline" method="POST">
+                                        @csrf
+                                        <input type="hidden" value="{{$post->id}}" name="post_id">
+                                        <li><span>Rating :</span>  
+                                        </li>
+                                        <select name="point">
+                                            <optgroup label="point">
+                                                @for ($i = 0; $i < 5; $i++)
+                                                @if ($current_rating != null && $current_rating->point == $i+1)
+                                                    <option selected="selected" value="{{$i+1}}">{{$i+1}}</option>
+                                                @else
+                                                    <option value="{{$i+1}}">{{$i+1}}</option>
+                                                @endif
+                                                @endfor
+                                            </optgroup>
+                                        </select> 
+                                        <button class="btn btn-danger ml-1">Give Rating</button>
+                                        </form>
+                                        @endauth
+                                        
                                         {{-- <li><span>Studios:</span> Lerche</li>
                                         <li><span>Date aired:</span> Oct 02, 2019 to ?</li>
                                         <li><span>Status:</span> Airing</li>
@@ -53,12 +76,12 @@
                                 </div> --}}
                             </div>
                         </div>
-                        <div class="anime__details__btn">
+                        {{-- <div class="anime__details__btn">
                             <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
                             <a href="#" class="watch-btn"><span>Watch Now</span> <i
                                 class="fa fa-angle-right"></i></a>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -76,17 +99,17 @@
                             <div class="anime__review__item__text">
                                 <h6>{{$k->profil->nama}} - <span> updated {{$k->updated_at->diffForHumans()}}</span>
                                     @if (Auth::check() && $user->profil->id == $k->profil_id)
-                                    <a href="">hapus</a>
+                                    <a href="{{route('komentar.delete', $k->id)}}">hapus</a>
                                     <a data-toggle="collapse" href="#edit{{$k->id}}" role="button" aria-expanded="false" aria-controls="collapseExample">edit</a>
                                     @endif
                                 </h6>
                                 <p>{{$k->isi}}</p>
                                 <div class="collapse" id="edit{{$k->id}}">
                                     <div class="card card-body">
-                                        <form action="">
+                                        <form action="{{route('komentar.update', $k->id)}}" method="POST">
                                             @csrf
-                                            <input type="hidden" value="">
-                                            <input class="" type="text" value="{{$k->isi}}">
+                                            @method("PUT")
+                                            <input class="" type="text" value="{{$k->isi}}" name="isi">
                                             <button class="btn btn-warning btn-sm" type="submit">edit</button>
                                         </form>
                                     </div>

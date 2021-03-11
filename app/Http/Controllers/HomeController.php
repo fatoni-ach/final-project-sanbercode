@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{Post_film, Film_genre, User};
+use App\{Post_film, Film_genre, User, Rating};
 use Illuminate\Support\Facades\Auth;
 
 
@@ -43,11 +43,16 @@ class HomeController extends Controller
             'page'  => 'home',
         ]);
         $post = Post_film::find($id);
+        $rating = Rating::where('post_film_id', $post->id);
+        $current_rating = new Rating;
         if(Auth::check()){
             $user = User::find(Auth::user()->id);
+            $current_rating = $rating->where('profil_id', $user->profil->id)->first();
         } else {
             $user = null;
+            $current_rating =null;
         }
-        return view('review.index', compact('post', 'context', 'user'));
+        
+        return view('review.index', compact('post', 'context', 'user', 'rating', 'current_rating'));
     }
 }
