@@ -47,7 +47,9 @@ Route::get('/review/show', function() {
     return view('/review/show');
 })->name('show');
 
-Route::resource('profil', 'ProfilController');
+Route::resource('profil', 'ProfilController')->except([
+    'edit'
+]);
 Route::resource('post_film', 'Post_filmController');
 
 //Auth::routes();
