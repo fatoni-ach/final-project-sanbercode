@@ -32,13 +32,13 @@ Route::get('/review', function() {
     return view('review/index');
 })->name('review');
 
-Route::get('/review_detail', function() {
-    return view('review_detail');
-})->name('review_detail');
-
 Route::get('/profil', function() {
     return view('/profil/index');
 })->name('profil');
+
+Route::get('/review/show', function() {
+    return view('/review/show');
+})->name('show');
 
 Route::resource('profil', 'ProfilController');
 Route::resource('post_film', 'Post_filmController');

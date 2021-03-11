@@ -13,8 +13,8 @@ class Post_filmController extends Controller
      */
     public function index()
     {
-        $post_film = Post_film::all();
-        return view('review.index', compact('post_film'));
+        $post = Post_film::all();
+        return view('review.post');
     }
 
     /**
@@ -24,7 +24,7 @@ class Post_filmController extends Controller
      */
     public function create()
     {
-        return view('review');
+        return view('review.post');
     }
 
     /**
@@ -38,18 +38,18 @@ class Post_filmController extends Controller
         $request->validate([
             'judul' => 'required',
             'sinopsis' => 'required',
-            'foto' => 'required',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'tahun' => 'required'
         ]);
 
-        $post_film = Post_film::Create([
+        $post = Post_film::Create([
             'judul' => $request['judul'],
             'sinopsis' => $request['nama'],
             'foto' => $request['foto'],
             'tahun' => $request['tahun']
         ]);
 
-        return redirect('review');
+        return redirect('review.show');
     }
 
     /**
@@ -60,8 +60,8 @@ class Post_filmController extends Controller
      */
     public function show($id)
     {
-        $post_film = Post_film::find($id);
-        return view ('review', compact('review'));
+        $post = Post_film::find($id);
+        return view ('review.show', compact('post'));
     }
 
     /**
@@ -72,8 +72,8 @@ class Post_filmController extends Controller
      */
     public function edit($id)
     {
-        $post_film = Post_film::find($id);
-        return view ('review.edit', compact('review'));
+        $post = Post_film::find($id);
+        return view ('review.edit', compact('post'));
     }
 
     /**
@@ -85,13 +85,13 @@ class Post_filmController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post_film = Post_film::where('id', $id)->update([
+        $post = Post_film::where('id', $id)->update([
             'judul' => $request['judul'],
             'sinopsis' => $request['nama'],
             'foto' => $request['foto'],
             'tahun' => $request['tahun']
         ]);
-        return redirect('review');
+        return redirect('review.show');
     }
 
     /**
@@ -103,6 +103,6 @@ class Post_filmController extends Controller
     public function destroy($id)
     {
         Post_film::destroy($id);
-        return redirect('review');
+        return redirect('homepage');
     }
 }
