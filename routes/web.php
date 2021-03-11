@@ -48,7 +48,7 @@ Route::get('/review/show', function() {
 })->name('show');
 
 Route::resource('profil', 'ProfilController')->except([
-    'edit'
+    'edit', 'update'
 ]);
 Route::resource('post_film', 'Post_filmController');
 
