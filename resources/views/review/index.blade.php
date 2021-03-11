@@ -68,17 +68,30 @@
                         <div class="section-title">
                             <h5>Reviews</h5>
                         </div>
+                        @foreach ($post->komentars as $k)
                         <div class="anime__review__item">
-                            @foreach ($post->komentars as $k)
                             <div class="anime__review__item__pic">
-                                <img src="img/anime/review-1.jpg" alt="">
+                                <img src="{{asset('img/post_film/thumbnail.png')}}" alt="">
                             </div>
                             <div class="anime__review__item__text">
-                                <h6>Chris Curry - <span>1 Hour ago</span></h6>
+                                <h6>{{$k->profil->nama}} - <span> updated {{$k->updated_at->diffForHumans()}}</span>
+                                    @if (Auth::check() && $user->profil->id == $k->profil_id)
+                                    <a href="">hapus</a>
+                                    <a data-toggle="collapse" href="#edit{{$k->id}}" role="button" aria-expanded="false" aria-controls="collapseExample">edit</a>
+                                    @endif
+                                </h6>
                                 <p>{{$k->isi}}</p>
+                                <div class="collapse" id="edit{{$k->id}}">
+                                    <div class="card card-body">
+                                        <form action="">
+                                            <input class="" type="text" value="{{$k->isi}}">
+                                            <button class="btn btn-warning btn-sm" type="submit">edit</button>
+                                        </form>
+                                    </div>
+                                  </div>
                             </div>
-                            @endforeach
                         </div>
+                        @endforeach
                         {{-- <div class="anime__review__item">
                             <div class="anime__review__item__pic">
                                 <img src="img/anime/review-2.jpg" alt="">
@@ -130,8 +143,10 @@
                         <div class="section-title">
                             <h5>Your Comment</h5>
                         </div>
-                        <form action="#">
-                            <textarea placeholder="Your Comment"></textarea>
+                        <form action="{{route('komentar.create' , $post->id)}}" method="POST">
+                            @csrf
+                            {{-- <input type="hidden" value="{{$post->id}}"> --}}
+                            <textarea placeholder="Your Comment" name="isi"></textarea>
                             @if (Auth::check())
                             <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
                             @else

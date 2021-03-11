@@ -21,6 +21,7 @@ Route::post('/login','Auth\LoginController@login_user')->name('login');
 Route::post('/signup','Auth\LoginController@signup')->name('signup');
 Route::get('/profil/edit','ProfilController@edit')->name('profil.edit');
 Route::put('/profil/edit','ProfilController@update')->name('profil.update');
+Route::post('/komentar/{profil_id}/create','KomentarController@create')->name('komentar.create');
 
 
 

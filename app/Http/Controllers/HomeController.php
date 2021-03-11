@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{Post_film, Film_genre};
+use App\{Post_film, Film_genre, User};
 use Illuminate\Support\Facades\Auth;
 
 
@@ -43,6 +43,7 @@ class HomeController extends Controller
             'page'  => 'home',
         ]);
         $post = Post_film::find($id);
-        return view('review.index', compact('post', 'context'));
+        $user = User::find(Auth::user()->id);
+        return view('review.index', compact('post', 'context', 'user'));
     }
 }
