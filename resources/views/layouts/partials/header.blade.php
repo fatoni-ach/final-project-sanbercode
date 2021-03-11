@@ -26,8 +26,8 @@
                             <li><a href="{{route('signup')}}">Sign Up</a></li>
                             <li><a href="{{Route('login')}}">Login</a></li>
                             @endguest
-                            <li><a href="{{Route('profil.index')}}">Profile</a></li>
                             @auth
+                            <li><a href="{{Route('profil.index')}}">Profile</a></li>
                             <li><a class="btn btn-danger" href="{{route('logout')}}">Logout</a></li>
                             @endauth
                             {{-- <li><a href="#">Review</a></li> --}}
@@ -38,7 +38,11 @@
             <div class="col-lg-2">
                 <div class="header__right">
                     <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                    <a href="{{route('profil.index')}}"><span class="icon_profile"></span></a>
+                    <a href="{{route('profil.index')}}"><span class="icon_profile"></span>
+                    @auth
+                        {{$user->profil->nama ?? ''}}
+                    @endauth
+                    </a>
                 </div>
             </div>
         </div>

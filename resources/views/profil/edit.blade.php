@@ -6,7 +6,7 @@
             <div class="col-lg-12 text-center">
                 <div class="normal__breadcrumb__text">
                     <h2>Profile</h2>
-                    <p>Hello {{$profil->nama}} </p>
+                    <p>Hello {{$user->profil->nama}} </p>
                 </div>
             </div>
         </div>
@@ -20,9 +20,11 @@
             <div class="col-lg-6">
                 <div class="login__form">
                     <h3>Profile</h3>
-                    <form action="{{action('ProfilController@show')}}" method="POST">
+                    <form action="{{route('profil.update')}}" method="POST">
+                        @csrf
+                        @method("PUT")
                         <div class="input__item">
-                            <input type="text" name="nama" placeholder="Nama">
+                            <input type="text" name="nama" placeholder="Nama" value="{{$user->profil->nama}}">
                             <span class="icon_profile"></span>
                             @error("body")
                                 <div class=”alert alert-danger”>
@@ -31,8 +33,17 @@
                             @enderror
                         </div>
                         <div class="input__item">
-                            <input type="date" name="tgl_lahir">
-                            <span class="icon_birth"></span>
+                            <input disabled type="text" name="email" placeholder="Email address" value="{{$user->email}}">
+                            <span class="icon_mail"></span>
+                            @error("body")
+                            <div class=”alert alert-danger”>
+                            {{ $message }}
+                            </div>
+                        @enderror
+                        </div>
+                        <div class="input__item">
+                            <input type="date" name="tgl_lahir" value="{{$user->profil->tgl_lahir}}">
+                            <span class="icon_calendar"></span>
                             @error("body")
                                 <div class=”alert alert-danger”>
                                 {{ $message }}

@@ -45,9 +45,4 @@ class HomeController extends Controller
         $post = Post_film::find($id);
         return view('review.index', compact('post', 'context'));
     }
-    public function logout()
-    {
-        Auth::logout();
-        return redirect(route('homepage'));
-    }
 }

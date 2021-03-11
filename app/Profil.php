@@ -22,5 +22,5 @@ class Profil extends Model
     {
         return $this->belongsToMany('App\Post_film', 'Ratings', 'profil_id', 'post_film_id');
     }
-    protected $fillable = ['nama', 'tgl_lahir'];
+    protected $fillable = ['nama', 'tgl_lahir', 'user_id'];
 }

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Profil;
+use App\{Profil, User};
+use Illuminate\Support\Facades\Auth;
 
 class ProfilController extends Controller
 {
@@ -14,8 +15,8 @@ class ProfilController extends Controller
      */
     public function index()
     {
-        $profil = Profil::all();
-        return view('profil.index', compact('profil'));
+        $user = User::find(Auth::user()->id);
+        return view('profil.index', compact('user'));
     }
 
     /**
@@ -68,10 +69,10 @@ class ProfilController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        $profil = Profil::find($id);
-        return view ('profil.edit', compact('profil'));
+        $user = User::find(Auth::user()->id);
+        return view ('profil.edit', compact('user'));
     }
 
     /**
@@ -81,13 +82,13 @@ class ProfilController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $profil = Profil::where('id', $id)->update([
-            'nama' => $request['nama'],
-            'tgl_lahir' => $request['tgl_lahir']
-        ]);
-        return redirect('profil.show');
+        $profil = User::find(Auth::user()->id)->profil;
+        $profil->nama = $request['nama'];
+        $profil->tgl_lahir = $request['tgl_lahir'];
+        $profil->update();
+        return redirect(route('profil.index'));
     }
 
     /**

@@ -14,6 +14,12 @@
 </section>
 @endsection
 @section('contentdua')
+@if (Session::has('sukses_create_login'))
+<div class="alert alert-success alert-block text-center">
+    <button type="button" class="close" data-dismiss="alert">×</button> 
+    <strong>{{ Session::get('sukses_create_login')}}</strong>
+</div>
+@endif
 <section class="login spad">
     <div class="container">
         <div class="row">
@@ -23,7 +29,7 @@
                     <form action="{{Route('login')}}" method="POST">
                         @csrf
                         <div class="input__item">
-                            <input type="text" name="email" placeholder="Email address">
+                            <input type="text" name="email" placeholder="Email address" value="{{old('email')}}">
                             <span class="icon_mail"></span>
                         </div>
                         <div class="input__item">

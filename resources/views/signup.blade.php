@@ -20,17 +20,31 @@
             <div class="col-lg-6">
                 <div class="login__form">
                     <h3>Sign Up</h3>
-                    <form action="#">
+                    <form action="{{route('signup')}}" method="POST">
+                        @csrf
                         <div class="input__item">
-                            <input type="text" placeholder="Email address">
+                            <input name="email" type="text" placeholder="Email address" value="{{old('email', '')}}">
                             <span class="icon_mail"></span>
+                            @error('email')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="input__item">
-                            <input type="text" placeholder="Your Name">
+                            <input name="name" type="text" placeholder="Your Name" value="{{old('name', '')}}">
                             <span class="icon_profile"></span>
+                            @error('name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="input__item">
-                            <input type="text" placeholder="Password">
+                            <input name="password" type="password" placeholder="Password" value="{{old('password' , '')}}">
+                            <span class="icon_lock"></span>
+                            @error('password')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="input__item">
+                            <input name="password_confirmation" type="password" placeholder="Konfirmasi password" value="{{old('password_confirmation', '')}}">
                             <span class="icon_lock"></span>
                         </div>
                         <button type="submit" class="site-btn">Login Now</button>

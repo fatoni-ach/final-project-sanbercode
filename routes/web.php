@@ -15,9 +15,13 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/','HomeController@homepage')->name('homepage');
-Route::get('/logout','HomeController@logout')->name('logout');
+Route::get('/logout','Auth\LoginController@logout')->name('logout');
 Route::get('/post/{id}','HomeController@show')->name('homepage_show');
 Route::post('/login','Auth\LoginController@login_user')->name('login');
+Route::post('/signup','Auth\LoginController@signup')->name('signup');
+Route::get('/profil/edit','ProfilController@edit')->name('profil.edit');
+Route::put('/profil/edit','ProfilController@update')->name('profil.update');
+
 
 
 Route::get('/login', function() {
@@ -40,7 +44,9 @@ Route::get('/profil', function() {
     return view('/profil/index');
 })->name('profil');
 
-Route::resource('profil', 'ProfilController');
+Route::resource('profil', 'ProfilController')->except([
+    'edit', 'update'
+]);
 Route::resource('post_film', 'Post_filmController');
 
 //Auth::routes();
