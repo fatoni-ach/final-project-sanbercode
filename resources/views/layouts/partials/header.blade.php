@@ -22,9 +22,14 @@
                                     <li><a href="./blog-details.html">Blog Details</a></li> --}}
                                 </ul>
                             </li>
+                            @guest
                             <li><a href="{{route('signup')}}">Sign Up</a></li>
                             <li><a href="{{Route('login')}}">Login</a></li>
+                            @endguest
                             <li><a href="{{Route('profil.index')}}">Profile</a></li>
+                            @auth
+                            <li><a class="btn btn-danger" href="{{route('logout')}}">Logout</a></li>
+                            @endauth
                             {{-- <li><a href="#">Review</a></li> --}}
                         </ul>
                     </nav>

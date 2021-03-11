@@ -20,7 +20,7 @@ class Profil extends Model
     }
     public function ratings()
     {
-        return $this->belongsToMany('App\Post_film', 'Rating', 'profil_id', 'post_film_id');
+        return $this->belongsToMany('App\Post_film', 'Ratings', 'profil_id', 'post_film_id');
     }
     protected $fillable = ['nama', 'tgl_lahir'];
 }

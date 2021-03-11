@@ -20,18 +20,19 @@
             <div class="col-lg-6">
                 <div class="login__form">
                     <h3>Login</h3>
-                    <form action="#">
+                    <form action="{{Route('login')}}" method="POST">
+                        @csrf
                         <div class="input__item">
-                            <input type="text" placeholder="Email address">
+                            <input type="text" name="email" placeholder="Email address">
                             <span class="icon_mail"></span>
                         </div>
                         <div class="input__item">
-                            <input type="text" placeholder="Password">
+                            <input type="password" name="password" placeholder="Password">
                             <span class="icon_lock"></span>
                         </div>
                         <button type="submit" class="site-btn">Login Now</button>
                     </form>
-                    <a href="#" class="forget_pass">Forgot Your Password?</a>
+                    {{-- <a href="#" class="forget_pass">Forgot Your Password?</a> --}}
                 </div>
             </div>
             <div class="col-lg-6">

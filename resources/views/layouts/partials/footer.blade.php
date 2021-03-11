@@ -13,7 +13,7 @@
                 <div class="footer__nav">
                     <ul>
                         <li class="active"><a href="{{route('homepage')}}">Homepage</a></li>
-                        <li><a href="{{route('review')}}">Review</a></li>
+                        {{-- <li><a href="{{route('review')}}">Review</a></li> --}}
                     </ul>
                 </div>
             </div>

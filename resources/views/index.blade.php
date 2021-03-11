@@ -52,33 +52,49 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-8">
                             <div class="section-title">
-                                <h4>Trending Now</h4>
+                                <h4>Postingan Film</h4>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="btn__all">
-                                <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a>
+                                {{-- <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a> --}}
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="{{asset('anime/img/trending/trend-1.jpg')}}">
-                                    <div class="ep">18 / 18</div>
-                                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                </div>
-                                <div class="product__item__text">
-                                    <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
-                                    </ul>
-                                    <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                                </div>
+                    @forelse ($post as $p)
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="product__item">
+                            @if ($p->foto != null)
+                                <div class="product__item__pic set-bg" data-setbg="{{$p->foto}}">
+                            @else
+                                <div class="product__item__pic set-bg" data-setbg="{{asset('img/post_film/thumbnail.png')}}">
+                            @endif
+                                {{-- <div class="ep">18 / 18</div> --}}
+                                <div class="comment"><i class="fa fa-comments"></i> {{count($p->komentars)}}</div>
+                                {{-- <div class="view"><i class="fa fa-eye"></i> 9141</div> --}}
+                            </div>
+                            <div class="product__item__text">
+                                <ul>
+                                    @forelse ($p->genres as $g)
+                                    <li>{{$g->nama}}</li>     
+                                    @empty
+                                    <li>None</li>
+                                    @endforelse
+                                </ul>
+                                <h5><a href="{{ route('homepage_show', $p->id )}}">{{$p->judul}}</a></h5>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
+                    </div>
+                    @empty
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="product__item">
+                            <h5>Belum ada Postingan</h5>
+                        </div>
+                    </div>
+                        
+                    @endforelse
+                        {{-- <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="{{asset('anime/img/trending/trend-2.jpg')}}">
                                     <div class="ep">18 / 18</div>
@@ -157,7 +173,7 @@
                                     <h5><a href="#">Code Geass: Hangyaku no Lelouch R2</a></h5>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 {{-- <div class="popular__product">

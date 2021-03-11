@@ -8,7 +8,7 @@ class Post_film extends Model
 {
     public function ratings()
     {
-        return $this->belongsToMany('App\Profil', 'rating', 'post_film_id', 'profil_id');
+        return $this->belongsToMany('App\Profil', 'ratings', 'post_film_id', 'profil_id');
     }
     public function profil()
     {
@@ -24,7 +24,7 @@ class Post_film extends Model
     }
     public function genres()
     {
-        return $this->belongsToMany('App\Genre', 'film_genre', 'post_film_id', 'genre_id');
+        return $this->belongsToMany('App\Genre', 'film_genres', 'post_film_id', 'genre_id');
     }
     protected $fillable = ['judul', 'sinopsis', 'foto', 'tahun'];
 }

@@ -23,6 +23,7 @@
     <link rel="stylesheet" href=" {{ asset('/anime/css/owl.carousel.min.css') }} " type="text/css">
     <link rel="stylesheet" href=" {{ asset('/anime/css/slicknav.min.css') }} " type="text/css">
     <link rel="stylesheet" href=" {{ asset('/anime/css/style.css') }} " type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -53,6 +54,7 @@
 
 
 <!-- Js Plugins -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src=" {{ asset('/anime/js/jquery-3.3.1.min.js') }} "></script>
 <script src=" {{ asset('/anime/js/bootstrap.min.js') }} "></script>
 <script src=" {{ asset('/anime/js/player.js') }} "></script>

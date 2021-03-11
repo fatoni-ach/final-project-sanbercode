@@ -5,16 +5,20 @@
         <div class="anime__details__content">
             <div class="row">
                 <div class="col-lg-3">
+                    @if ($post->foto != null)
                     <div class="anime__details__pic set-bg" data-setbg="img/anime/details-pic.jpg">
-                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                    @else
+                    <div class="anime__details__pic set-bg" data-setbg="{{asset('img/post_film/thumbnail.png')}}">
+                    @endif
+                        <div class="comment"><i class="fa fa-comments"></i> {{count($post->komentars)}}</div>
+                        {{-- <div class="view"><i class="fa fa-eye"></i> 9141</div> --}}
                     </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="anime__details__text">
                         <div class="anime__details__title">
-                            <h3>Fate Stay Night: Unlimited Blade</h3>
-                            <span>フェイト／ステイナイト, Feito／sutei naito</span>
+                            <h3>{{$post->judul}}</h3>
+                            {{-- <span>フェイト／ステイナイト, Feito／sutei naito</span> --}}
                         </div>
                         <div class="anime__details__rating">
                             <div class="rating">
@@ -24,24 +28,21 @@
                                 <a href="#"><i class="fa fa-star"></i></a>
                                 <a href="#"><i class="fa fa-star-half-o"></i></a>
                             </div>
-                            <span>1.029 Votes</span>
+                            <span>{{count($post->ratings)}} Star</span>
                         </div>
-                        <p>Every human inhabiting the world of Alcia is branded by a “Count” or a number written on
-                            their body. For Hina’s mother, her total drops to 0 and she’s pulled into the Abyss,
-                            never to be seen again. But her mother’s last words send Hina on a quest to find a
-                        legendary hero from the Waste War - the fabled Ace!</p>
+                        <p>{{$post->sinopsis}}</p>
                         <div class="anime__details__widget">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <ul>
-                                        <li><span>Type:</span> TV Series</li>
-                                        <li><span>Studios:</span> Lerche</li>
+                                        <li><span>Tahun: </span> {{$post->tahun}}</li>
+                                        {{-- <li><span>Studios:</span> Lerche</li>
                                         <li><span>Date aired:</span> Oct 02, 2019 to ?</li>
                                         <li><span>Status:</span> Airing</li>
-                                        <li><span>Genre:</span> Action, Adventure, Fantasy, Magic</li>
+                                        <li><span>Genre:</span> Action, Adventure, Fantasy, Magic</li> --}}
                                     </ul>
                                 </div>
-                                <div class="col-lg-6 col-md-6">
+                                {{-- <div class="col-lg-6 col-md-6">
                                     <ul>
                                         <li><span>Scores:</span> 7.31 / 1,515</li>
                                         <li><span>Rating:</span> 8.5 / 161 times</li>
@@ -49,7 +50,7 @@
                                         <li><span>Quality:</span> HD</li>
                                         <li><span>Views:</span> 131,541</li>
                                     </ul>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="anime__details__btn">
@@ -68,16 +69,17 @@
                             <h5>Reviews</h5>
                         </div>
                         <div class="anime__review__item">
+                            @foreach ($post->komentars as $k)
                             <div class="anime__review__item__pic">
                                 <img src="img/anime/review-1.jpg" alt="">
                             </div>
                             <div class="anime__review__item__text">
                                 <h6>Chris Curry - <span>1 Hour ago</span></h6>
-                                <p>whachikan Just noticed that someone categorized this as belonging to the genre
-                                "demons" LOL</p>
+                                <p>{{$k->isi}}</p>
                             </div>
+                            @endforeach
                         </div>
-                        <div class="anime__review__item">
+                        {{-- <div class="anime__review__item">
                             <div class="anime__review__item__pic">
                                 <img src="img/anime/review-2.jpg" alt="">
                             </div>
@@ -122,7 +124,7 @@
                                 <h6>Louis Tyler - <span>20 Hour ago</span></h6>
                                 <p>Where is the episode 15 ? Slow update! Tch</p>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="anime__details__form">
                         <div class="section-title">
@@ -130,7 +132,11 @@
                         </div>
                         <form action="#">
                             <textarea placeholder="Your Comment"></textarea>
+                            @if (Auth::check())
                             <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
+                            @else
+                            <a class="btn btn-danger" href="{{route('login')}}"><i class="fa fa-location-arrow"></i> Login untuk komentar</a>
+                            @endif
                         </form>
                     </div>
                 </div>

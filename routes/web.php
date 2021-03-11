@@ -14,9 +14,11 @@
 // use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
-})->name('homepage');
+Route::get('/','HomeController@homepage')->name('homepage');
+Route::get('/logout','HomeController@logout')->name('logout');
+Route::get('/post/{id}','HomeController@show')->name('homepage_show');
+Route::post('/login','Auth\LoginController@login_user')->name('login');
+
 
 Route::get('/login', function() {
     return view('login');
