@@ -35,6 +35,7 @@ class Post_filmController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'judul' => 'required',
             'sinopsis' => 'required',
@@ -60,8 +61,14 @@ class Post_filmController extends Controller
      */
     public function show($id)
     {
+        // dd($request->all());
+        $context = ([
+            'page'  => 'home',
+        ]);
         $post = Post_film::find($id);
-        return view ('review.show', compact('post'));
+        return view('review.index', compact('post', 'context'));
+        // $post = Post_film::find($id);
+        // return view ('review.show', compact('post'));
     }
 
     /**

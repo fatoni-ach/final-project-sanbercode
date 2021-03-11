@@ -17,7 +17,7 @@
                               <button type="button" class="close" data-dismiss="alert">×</button>
                                   <strong>{{ $message }}</strong>
                           </div>
-                          <img src="img/{{ Session::get('foto') }}">
+                          <img src="img/{{Session::get('foto')}}">
                           @endif
                           @if (count($errors) > 0)
                               <div class="alert alert-danger">
@@ -31,9 +31,9 @@
                           @endif
                         </div>
                     </div>
-                    <form action="{{-- route('post_film.show') --}}" method="POST" enctype="multipart/form-data" class="pl-4">
+                    <form action="{{route('post_film.store')}}" method="POST" enctype="multipart/form-data" class="pl-4">
                         @csrf
-                        @method('PUT')
+                       
                         <div class="row">
                             <div class="col-md-6 pt-5">
                                 <input type="file" name="foto" class="form-control">
@@ -48,9 +48,9 @@
                 <div class="col-lg-9 mt-5">
                     <div class="anime__details__text">
                         <div class="anime__details__title">
-                            <form action="/" method="POST">
+                            <form action="{{route('post_film.store')}}" method="POST">
                                 @csrf
-                                @method('PUT')
+                                
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="judul" id="title" placeholder="Title">
                                     @error('title')

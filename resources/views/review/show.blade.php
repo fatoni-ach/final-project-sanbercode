@@ -5,7 +5,7 @@
         <div class="anime__details__content">
             <div class="row">
                 <div class="col-lg-3">
-                    {{-- @if ($post['foto'] != null) --}}
+                    {{-- @if ($post->foto != null) --}}
                     <div class="anime__details__pic set-bg" data-setbg="img/anime/details-pic.jpg">
                     {{-- @else --}}
                     <div class="anime__details__pic set-bg" data-setbg="{{asset('img/post_film/thumbnail.png')}}">
@@ -15,9 +15,9 @@
                 <div class="col-lg-9">
                     <div class="anime__details__text">
                         <div class="anime__details__title">
-                            <h3>{{--$post['judul']--}}</h3>
+                            <h3>Test{{--$post['judul']--}}</h3>
                         </div>
-                        <p>{{--$post['sinopsis']--}}</p>
+                        <p>testing{{--$post['sinopsis']--}}</p>
                         <div class="anime__details__widget">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
