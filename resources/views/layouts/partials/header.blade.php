@@ -30,7 +30,7 @@
                             <li><a href="{{Route('profil.index')}}">Profile</a></li>
                             <li><a class="btn btn-danger" href="{{route('logout')}}">Logout</a></li>
                             @endauth
-                            {{-- <li><a href="#">Review</a></li> --}}
+                            <li><a href="{{Route('post_film.create')}}">Post Review</a></li>
                         </ul>
                     </nav>
                 </div>
