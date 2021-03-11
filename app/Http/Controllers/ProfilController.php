@@ -13,6 +13,12 @@ class ProfilController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        # code...
+        $this->middleware('auth', ['except' => ['show']]);
+    }
+
     public function index()
     {
         $user = User::find(Auth::user()->id);

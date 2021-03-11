@@ -84,6 +84,8 @@
                                 <div class="collapse" id="edit{{$k->id}}">
                                     <div class="card card-body">
                                         <form action="">
+                                            @csrf
+                                            <input type="hidden" value="">
                                             <input class="" type="text" value="{{$k->isi}}">
                                             <button class="btn btn-warning btn-sm" type="submit">edit</button>
                                         </form>
