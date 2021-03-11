@@ -26,4 +26,5 @@ class Post_film extends Model
     {
         return $this->belongsToMany('App\Genre', 'film_genre', 'post_film_id', 'genre_id');
     }
+    protected $fillable = ['judul', 'sinopsis', 'foto', 'tahun'];
 }

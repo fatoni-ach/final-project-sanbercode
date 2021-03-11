@@ -11,6 +11,9 @@
 |
 */
 
+// use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('index');
 })->name('homepage');
@@ -24,13 +27,20 @@ Route::get('/signup', function() {
 })->name('signup');
 
 Route::get('/review', function() {
-    return view('review');
+    return view('review/index');
 })->name('review');
 
 Route::get('/review_detail', function() {
     return view('review_detail');
 })->name('review_detail');
 
-Auth::routes();
+Route::get('/profil', function() {
+    return view('/profil/index');
+})->name('profil');
+
+Route::resource('profil', 'ProfilController');
+Route::resource('post_film', 'Post_filmController');
+
+//Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

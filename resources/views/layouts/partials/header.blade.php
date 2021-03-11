@@ -24,6 +24,7 @@
                             </li>
                             <li><a href="{{route('signup')}}">Sign Up</a></li>
                             <li><a href="{{Route('login')}}">Login</a></li>
+                            <li><a href="{{Route('profil.index')}}">Profile</a></li>
                             {{-- <li><a href="#">Review</a></li> --}}
                         </ul>
                     </nav>
@@ -32,7 +33,7 @@
             <div class="col-lg-2">
                 <div class="header__right">
                     <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                    <a href="./login.html"><span class="icon_profile"></span></a>
+                    <a href="{{route('profil.index')}}"><span class="icon_profile"></span></a>
                 </div>
             </div>
         </div>
