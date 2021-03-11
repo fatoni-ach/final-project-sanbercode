@@ -43,7 +43,11 @@ class HomeController extends Controller
             'page'  => 'home',
         ]);
         $post = Post_film::find($id);
-        $user = User::find(Auth::user()->id);
+        if(Auth::check()){
+            $user = User::find(Auth::user()->id);
+        } else {
+            $user = null;
+        }
         return view('review.index', compact('post', 'context', 'user'));
     }
 }
