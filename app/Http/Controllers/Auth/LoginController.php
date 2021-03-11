@@ -52,7 +52,7 @@ class LoginController extends Controller
     }
     public function signup(Request $request)
     {
-        $request = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:20',
             'email' => 'required|string|email|max:45|unique:users',
             'password' => 'required|string|confirmed',
@@ -69,7 +69,6 @@ class LoginController extends Controller
         ]);
         $request->session()->flash('sukses_create_login', 'User berhasil dibuat silahkan login dan update profil');
         return redirect(route('login'));
-        
     }
     public function logout()
     {
