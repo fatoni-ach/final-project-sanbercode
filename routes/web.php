@@ -48,14 +48,24 @@ Route::get('/profil', function() {
 Route::resource('profil', 'ProfilController')->except([
     'edit', 'update'
 ]);
-Route::get('/review/show', function() {
-    return view('/review/show');
-})->name('show');
+
+// Route::get('/review/show', function() {
+//     return view('/review/show');
+// })->name('show');
 
 Route::resource('profil', 'ProfilController')->except([
     'edit', 'update'
 ]);
-Route::resource('post_film', 'Post_filmController');
+
+Route::get('/review/index', 'Post_filmController@index')->name('post.index');
+Route::get('/review/post', 'Post_filmController@create')->name('post.create');
+Route::post('/review/show', 'Post_filmController@store')->name('post.store');
+Route::get('/review/show', 'Post_filmController@show')->name('post.show');
+Route::get('/review/{post_film_id}/edit', 'Post_filmController@edit')->name('post.edit');
+Route::put('/review/{post_film_id}', 'Post_filmController@update')->name('post.update');
+Route::delete('/review/{post_film_id}', 'Post_filmController@destroy')->name('post.delete');
+
+// Route::resource('post_film', 'Post_filmController');
 
 //Auth::routes();
 

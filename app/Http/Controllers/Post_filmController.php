@@ -14,7 +14,7 @@ class Post_filmController extends Controller
     public function index()
     {
         $post = Post_film::all();
-        return view('review.post');
+        return view('review.index');
     }
 
     /**

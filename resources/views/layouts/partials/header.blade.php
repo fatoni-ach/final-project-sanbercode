@@ -28,7 +28,7 @@
                             @endguest
                             @auth
                             <li><a href="{{Route('profil.index')}}">Profile</a></li>
-                            <li><a href="{{Route('post_film.create')}}">Buat Postingan</a></li>
+                            <li><a href="{{Route('post.create')}}">Buat Postingan</a></li>
                             <li><a class="btn btn-danger" href="{{route('logout')}}">Logout</a></li>
                             @endauth
                         </ul>
