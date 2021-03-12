@@ -70,9 +70,6 @@
                                         @foreach ($post->pemains as $p)
                                             <option value="{{$g->nama}}" selected="selected">{{$p->nama}}</option>                                            
                                         @endforeach
-                                        @foreach ($pemain as $p)
-                                            <option value="{{$g->nama}}">{{$p->nama}}</option>                                            
-                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">

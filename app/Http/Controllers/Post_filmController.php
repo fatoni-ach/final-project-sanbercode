@@ -30,7 +30,7 @@ class Post_filmController extends Controller
     {
         $genre = Genre::get();
         $pemain = Pemain::select('nama')->distinct()->get();
-        return view('review.post', compact('genre', 'pemain'));
+        return view('review.Post', compact('genre', 'pemain'));
     }
 
     /**
@@ -135,6 +135,10 @@ class Post_filmController extends Controller
         ]);
         $post = Post_film::find($id);
         if(file_exists($request->file('gambar'))){
+            $urlImage = base_path()."/public/".($post->getImage());
+                if(file_exists($urlImage)){
+                    unlink($urlImage);
+            }
             $gambar = $request->gambar;
             $new_gambar = time() . '-post_film.png';
             $directory = $gambar->move('img/post_film/', $new_gambar);
@@ -182,6 +186,10 @@ class Post_filmController extends Controller
         $post->ratings()->detach();
         Komentar::where('post_film_id', $post->id)->delete();
         Pemain::where('post_film_id', $post->id)->delete();
+        $urlImage = base_path()."/public/".($post->getImage());
+            if(file_exists($urlImage)){
+                unlink($urlImage);
+        }
         $post->delete();
         return redirect()->back();
     }
