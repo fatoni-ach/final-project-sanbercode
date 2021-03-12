@@ -10,4 +10,5 @@ class Pemain extends Model
     {
         return $this->belongsTo('App\Post_film');
     }
+    protected $fillable = ['nama', 'post_film_id'];
 }

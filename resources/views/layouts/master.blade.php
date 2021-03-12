@@ -19,11 +19,11 @@
     <link rel="stylesheet" href=" {{ asset('/anime/css/font-awesome.min.css') }} " type="text/css">
     <link rel="stylesheet" href=" {{ asset('/anime/css/elegant-icons.css') }} " type="text/css">
     <link rel="stylesheet" href=" {{ asset('/anime/css/plyr.css') }} " type="text/css">
-    <link rel="stylesheet" href=" {{ asset('/anime/css/nice-select.css') }} " type="text/css">
+    {{-- <link rel="stylesheet" href=" {{ asset('/anime/css/nice-select.css') }} " type="text/css"> --}}
     <link rel="stylesheet" href=" {{ asset('/anime/css/owl.carousel.min.css') }} " type="text/css">
     <link rel="stylesheet" href=" {{ asset('/anime/css/slicknav.min.css') }} " type="text/css">
     <link rel="stylesheet" href=" {{ asset('/anime/css/style.css') }} " type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('select2/dist/css/select2.min.css') }}" rel="stylesheet" />
 </head>
 
 <body>
@@ -54,15 +54,16 @@
 
 
 <!-- Js Plugins -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src=" {{ asset('/anime/js/jquery-3.3.1.min.js') }} "></script>
 <script src=" {{ asset('/anime/js/bootstrap.min.js') }} "></script>
 <script src=" {{ asset('/anime/js/player.js') }} "></script>
-<script src=" {{ asset('/anime/js/jquery.nice-select.min.js') }} "></script>
+{{-- <script src=" {{ asset('/anime/js/jquery.nice-select.min.js') }} "></script> --}}
 <script src=" {{ asset('/anime/js/mixitup.min.js') }} "></script>
 <script src=" {{ asset('/anime/js/jquery.slicknav.js') }} "></script>
 <script src=" {{ asset('/anime/js/owl.carousel.min.js') }} "></script>
 <script src=" {{ asset('/anime/js/main.js') }} "></script>
+<script src="{{ asset('select2/dist/js/select2.min.js') }}"></script>
+@stack('script')
 
 
 </body>

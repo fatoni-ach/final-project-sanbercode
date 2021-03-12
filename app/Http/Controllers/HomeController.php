@@ -30,7 +30,7 @@ class HomeController extends Controller
     }
     public function homepage()
     {
-        $post = Post_film::get();
+        $post = Post_film::orderBy('created_at', 'DESC')->get();
         $context = ([
             'page'  => 'home',
         ]);

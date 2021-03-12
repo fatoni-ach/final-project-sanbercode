@@ -26,5 +26,9 @@ class Post_film extends Model
     {
         return $this->belongsToMany('App\Genre', 'film_genres', 'post_film_id', 'genre_id');
     }
-    protected $fillable = ['judul', 'sinopsis', 'foto', 'tahun'];
+    public function getImage()
+    {
+        return 'img/post_film/'. $this->foto;
+    }
+    protected $fillable = ['judul', 'sinopsis', 'foto', 'tahun', 'profil_id'];
 }

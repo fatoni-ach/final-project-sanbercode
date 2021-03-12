@@ -51,7 +51,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
                             @if ($p->foto != null)
-                                <div class="product__item__pic set-bg" data-setbg="{{$p->foto}}">
+                                <div class="product__item__pic set-bg" data-setbg="{{ asset($p->getImage()) }}">
                             @else
                                 <div class="product__item__pic set-bg" data-setbg="{{asset('img/post_film/thumbnail.png')}}">
                             @endif

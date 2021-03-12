@@ -59,7 +59,7 @@ Route::resource('profil', 'ProfilController')->except([
 
 Route::get('/review/index', 'Post_filmController@index')->name('post.index');
 Route::get('/review/post', 'Post_filmController@create')->name('post.create');
-Route::post('/review/show', 'Post_filmController@store')->name('post.store');
+Route::post('/review/post', 'Post_filmController@store')->name('post.store');
 Route::get('/review/show', 'Post_filmController@show')->name('post.show');
 Route::get('/review/{post_film_id}/edit', 'Post_filmController@edit')->name('post.edit');
 Route::put('/review/{post_film_id}', 'Post_filmController@update')->name('post.update');

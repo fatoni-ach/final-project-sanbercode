@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     @if ($post->foto != null)
-                    <div class="anime__details__pic set-bg" data-setbg="img/anime/details-pic.jpg">
+                    <div class="anime__details__pic set-bg" data-setbg="{{ asset($post->getImage()) }}">
                     @else
                     <div class="anime__details__pic set-bg" data-setbg="{{asset('img/post_film/thumbnail.png')}}">
                     @endif
@@ -42,10 +42,10 @@
                                         <form action="{{Route('rating.create')}}" class="form-inline" method="POST">
                                         @csrf
                                         <input type="hidden" value="{{$post->id}}" name="post_id">
-                                        <li><span>Rating :</span>  
+                                        <li><span>Your Rating :</span>  
                                         </li>
-                                        <select name="point">
-                                            <optgroup label="point">
+                                        <select name="point" class="form-group">
+                                            <optgroup label="point" class="form-control">
                                                 @for ($i = 0; $i < 5; $i++)
                                                 @if ($current_rating != null && $current_rating->point == $i+1)
                                                     <option selected="selected" value="{{$i+1}}">{{$i+1}}</option>

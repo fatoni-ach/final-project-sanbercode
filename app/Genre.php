@@ -10,4 +10,5 @@ class Genre extends Model
     {
         return $this->belongsToMany('App\Post_film', 'film_genres', 'genre_id', 'post_film_id');
     }
+    protected $fillable = ['nama'];
 }
