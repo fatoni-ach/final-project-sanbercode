@@ -13,7 +13,7 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li class="active"><a href="{{route('homepage')}}">Home</a></li>
-                            <li><a href="./categories.html">Genre <span class="arrow_carrot-down"></span></a>
+                            <li><a disabled href="">Genre <span class="arrow_carrot-down"></span></a>
                                 <ul class="dropdown">
                                     <li><a href="./categories.html">genre a</a></li>
                                     <li><a href="./categories.html">genre dll</a></li>
