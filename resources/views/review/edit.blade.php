@@ -31,25 +31,25 @@
                           @endif
                         </div>
                     </div>
-                    <form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data" class="pl-4">
+                    <form action="{{route('post.update')}}" method="PUT" enctype="multipart/form-data" class="pl-4">
                         @csrf
                        
                         <div class="row">
                             <div class="col-md-6 pt-5">
                                 <input type="file" name="foto" class="form-control">
                             </div>
-                            {{-- <div class="col-md-6 pt-5">
+                            <div class="col-md-6 pt-5">
                                 <button type="submit" class="btn btn-success">Upload</button>
-                            </div> --}}
+                            </div>
                         </div>
-                    {{-- </form> --}}
+                    </form>
                     </div>
                 </div>
                 <div class="col-lg-9 mt-5">
                     <div class="anime__details__text">
                         <div class="anime__details__title">
-                            {{-- <form action="{{route('post.store')}}" method="POST">
-                                @csrf --}}
+                            <form action="{{route('post.update')}}" method="PUT">
+                                @csrf
                                 
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="judul" id="title" placeholder="Title">
@@ -75,7 +75,7 @@
                                         </div>
                                     @enderror
                                 </div>
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button type="submit" class="btn btn-primary">Edit</button>
                             </form>
                         </div>
                     </div>
