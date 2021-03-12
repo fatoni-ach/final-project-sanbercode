@@ -85,7 +85,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col-lg-8 col-md-8">
                     <div class="anime__details__review">
                         <div class="section-title">
@@ -180,7 +180,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4">
+                {{-- <div class="col-lg-4 col-md-4">
                     <div class="anime__details__sidebar">
                         <div class="section-title">
                             <h5>you might like...</h5>
@@ -206,7 +206,7 @@
                             <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>

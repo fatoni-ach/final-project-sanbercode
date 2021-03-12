@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('contentsatu')
-<section class="normal-breadcrumb set-bg" data-setbg="{{ asset('/anime/img/normal-breadcrumb.jpg') }}">
+<section class="normal-breadcrumb set-bg" data-setbg="{{ asset('img/post_film/pattern.png') }}">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="row">
-                    @forelse ($user->profil->post_films as $p)
+                    @forelse ($user->profil->post_films->reverse() as $p)
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
                             @if ($p->foto != null)
@@ -68,9 +68,11 @@
                                     @endforelse
                                 </ul>
                                 <h5><a href="{{ route('homepage_show', $p->id )}}">{{$p->judul}}</a></h5>
-                                <form action="{{route('profil.index')}}" method="DELETE">
-                                @csrf
-                                <a href="{{Route('post.delete', $id ?? '')}}" class="site-btn btn-warning mt-2">Delete Post</a>
+                                <a href="{{Route('post.edit', $p->id)}}" class="site-btn btn-warning mt-2">Edit Post</a>
+                                <form action="{{route('post.delete', $p->id)}}" method="post">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button role="button" type="submit" class="site-btn btn-warning mt-2">Delete Post</button>
                                 </form>
                             </div>
                         </div>

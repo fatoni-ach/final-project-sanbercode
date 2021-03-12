@@ -3,6 +3,19 @@
 <section class="hero">
     <div class="container">
         <div class="hero__slider owl-carousel">
+            @forelse ($post_header as $ph)
+            <div class="hero__items set-bg" data-setbg=" {{ asset($ph->getImage()) }} ">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="hero__text">
+                            <h2>{{$ph->judul}}</h2>
+                            <p>Posted {{$ph->created_at->diffForHumans()}}</p>
+                            {{-- <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>    
+            @empty
             <div class="hero__items set-bg" data-setbg=" {{ asset('anime/img/hero/hero-1.jpg') }} ">
                 <div class="row">
                     <div class="col-lg-6">
@@ -15,30 +28,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hero__items set-bg" data-setbg="{{ asset('anime/img/hero/hero-1.jpg') }}">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="hero__text">
-                            <div class="label">Adventure</div>
-                            <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                            <p>After 30 days of travel across the world...</p>
-                            <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero__items set-bg" data-setbg="{{ asset('anime/img/hero/hero-1.jpg') }}">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="hero__text">
-                            <div class="label">Adventure</div>
-                            <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                            <p>After 30 days of travel across the world...</p>
-                            <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforelse
         </div>
     </div>
 </section>
@@ -47,7 +37,7 @@
 <section class="product spad">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="trending__product">
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-8">
@@ -513,7 +503,7 @@
                     </div>
                 </div> --}}
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-8">
+            {{-- <div class="col-lg-4 col-md-6 col-sm-8">
                 <div class="product__sidebar">
                     <div class="product__sidebar__view">
                         <div class="section-title">
@@ -549,16 +539,16 @@
                 <div class="ep">18 / ?</div>
                 <div class="view"><i class="fa fa-eye"></i> 9141</div>
                 <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
-            </div>
-            <div class="product__sidebar__view__item set-bg mix day"
+            </div> --}}
+            {{-- <div class="product__sidebar__view__item set-bg mix day"
             data-setbg="{{ asset('anime/img/sidebar/tv-5.jpg') }}">
             <div class="ep">18 / ?</div>
             <div class="view"><i class="fa fa-eye"></i> 9141</div>
-            <h5><a href="#">Fate stay night unlimited blade works</a></h5>
+            <h5><a href="#">Fate stay night unlimited blade works</a></h5> --}}
         </div>
     </div>
 </div>
-<div class="product__sidebar__comment">
+{{-- <div class="product__sidebar__comment">
     <div class="section-title">
         <h5>New Comment</h5>
     </div>
@@ -614,7 +604,7 @@
             <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
         </div>
     </div>
-</div>
+</div> --}}
 </div>
 </div>
 </div>

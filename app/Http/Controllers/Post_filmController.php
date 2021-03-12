@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\{Post_film, User, Genre, Pemain};
+use App\{Post_film, User, Genre, Pemain, Komentar};
 use App\Classes\OptimizeImage;
 
 
@@ -50,11 +50,11 @@ class Post_filmController extends Controller
             'pemain' => 'required',
             'tahun' => 'required'
         ]);
+
         $gambar = $request->foto;
         $new_gambar = time() . '-post_film.png';
-
-
         $directory = $gambar->move('img/post_film/', $new_gambar);
+
         $user = User::find(Auth::user()->id);
         $post = Post_film::Create([
             'judul' => $request['judul'],
@@ -63,11 +63,13 @@ class Post_filmController extends Controller
             'tahun' => $request['tahun'],
             'profil_id' => $user->profil->id
         ]);
+
         $genre_id = [];
         foreach ($request->genre as $g){
             $genre = Genre::firstOrCreate(['nama' => $g]);
             $genre_id[] = $genre->id;
         }
+
         foreach($request->pemain as $p){
             $pemain = Pemain::create([
                 'nama' => $p,
@@ -75,8 +77,10 @@ class Post_filmController extends Controller
             ]);
         }
         $post->genres()->attach($genre_id);
+
         $optimizer = new OptimizeImage();
         $optimizer->medium(base_path().'/public/'.$directory);
+
         return redirect()->back();
     }
 
@@ -107,7 +111,9 @@ class Post_filmController extends Controller
     public function edit($id)
     {
         $post = Post_film::find($id);
-        return view ('review.edit', compact('post'));
+        $genre = Genre::get();
+        $pemain = Pemain::select('nama')->distinct()->get();
+        return view ('review.edit', compact('post', 'genre', 'pemain'));
     }
 
     /**
@@ -119,13 +125,48 @@ class Post_filmController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post = Post_film::where('id', $id)->update([
-            'judul' => $request['judul'],
-            'sinopsis' => $request['nama'],
-            'foto' => $request['foto'],
-            'tahun' => $request['tahun']
+        $request->validate([
+            'judul' => 'required',
+            'sinopsis' => 'required',
+            'genre' =>'required',
+            'gambar' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'pemain' => 'required',
+            'tahun' => 'required'
         ]);
-        return redirect('review.show');
+        $post = Post_film::find($id);
+        if(file_exists($request->file('gambar'))){
+            $gambar = $request->gambar;
+            $new_gambar = time() . '-post_film.png';
+            $directory = $gambar->move('img/post_film/', $new_gambar);
+            $optimizer = new OptimizeImage();
+            $optimizer->medium(base_path().'/public/'.$directory);
+            $post->foto = $new_gambar;
+        }
+        $post->update($request->all());
+
+        $genre_id = [];
+        foreach ($request->genre as $g){
+            $genre = Genre::firstOrCreate(['nama' => $g]);
+            $genre_id[] = $genre->id;
+        }
+        $genre_id = array_unique($genre_id);
+        $post->genres()->sync($genre_id);
+        
+        // $pemain = Pemain::where('post_film_id', $id)->get();
+        Pemain::where('post_film_id', $post->id)->delete();
+        $pemain_unique=[];
+        foreach($request->pemain as $p){
+            $pemain_unique[] = $p;
+        }
+        // dd($pemain_unique);
+        $pemain_unique = array_unique($pemain_unique);
+        foreach($pemain_unique as $p){
+            $pemain = Pemain::create([
+                'nama' => $p,
+                'post_film_id'  => $post->id
+            ]);
+        }
+        return redirect()->back();
     }
 
     /**
@@ -136,7 +177,12 @@ class Post_filmController extends Controller
      */
     public function destroy($id)
     {
-        Post_film::destroy($id);
-        return redirect('profil.index');
+        $post = Post_film::find($id);
+        $post->genres()->detach();
+        $post->ratings()->detach();
+        Komentar::where('post_film_id', $post->id)->delete();
+        Pemain::where('post_film_id', $post->id)->delete();
+        $post->delete();
+        return redirect()->back();
     }
 }

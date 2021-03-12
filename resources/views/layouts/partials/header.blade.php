@@ -13,15 +13,12 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li class="active"><a href="{{route('homepage')}}">Home</a></li>
-                            <li><a disabled href="">Genre <span class="arrow_carrot-down"></span></a>
+                            {{-- <li><a disabled href="">Genre <span class="arrow_carrot-down"></span></a>
                                 <ul class="dropdown">
                                     <li><a href="./categories.html">genre a</a></li>
                                     <li><a href="./categories.html">genre dll</a></li>
-                                    {{-- <li><a href="./anime-details.html">Blog</a></li>
-                                    <li><a href="./anime-watching.html">Anime Watching</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li> --}}
                                 </ul>
-                            </li>
+                            </li> --}}
                             @guest
                             <li><a href="{{route('signup')}}">Sign Up</a></li>
                             <li><a href="{{Route('login')}}">Login</a></li>

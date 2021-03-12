@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-3 mt-5">
                     <div class="panel panel-primary">
-                        <div class="anime__details__pic bg-light border border-info" data-setbg="{{asset('img/')}}">
+                        <div class="product__item__pic set-bg bg-light border border-info" data-setbg="{{asset($post->getImage())}}">
                         <div class="panel-body">
                      
                           @if ($message = Session::get('success'))
@@ -17,7 +17,7 @@
                               <button type="button" class="close" data-dismiss="alert">×</button>
                                   <strong>{{ $message }}</strong>
                           </div>
-                          <img src="img/{{Session::get('foto')}}">
+                          <img src="{{asset($post->getImage())}}}">
                           @endif
                           @if (count($errors) > 0)
                               <div class="alert alert-danger">
@@ -31,28 +31,24 @@
                           @endif
                         </div>
                     </div>
-                    <form action="{{route('post.update')}}" method="PUT" enctype="multipart/form-data" class="pl-4">
-                        @csrf
-                       
-                        <div class="row">
-                            <div class="col-md-6 pt-5">
-                                <input type="file" name="foto" class="form-control">
-                            </div>
-                            <div class="col-md-6 pt-5">
-                                <button type="submit" class="btn btn-success">Upload</button>
-                            </div>
-                        </div>
-                    </form>
                     </div>
                 </div>
                 <div class="col-lg-9 mt-5">
                     <div class="anime__details__text">
                         <div class="anime__details__title">
-                            <form action="{{route('post.update')}}" method="PUT">
+                            <form action="{{route('post.update', $post->id)}}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                
+                                @method("PUT")
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="judul" id="title" placeholder="Title">
+                                    <input type="file" name="gambar" class="form-control" value="">
+                                    @error('foto')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="judul" id="title" placeholder="Title" value="{{ $post->judul}}">
                                     @error('title')
                                         <div class="alert alert-danger">
                                             {{ $message }}
@@ -60,7 +56,28 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" name="sinopsis" id="isi" cols="30" rows="10" placeholder="Your Review"></textarea>
+                                    <select id="genre" name="genre[]" class="form-control" multiple="multiple">
+                                        @foreach ($post->genres as $g)
+                                            <option value="{{$g->nama}}" selected="selected">{{$g->nama}}</option>                                            
+                                        @endforeach
+                                        @foreach ($genre as $g)
+                                            <option value="{{$g->nama}}">{{$g->nama}}</option>                                            
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select id="pemain" name="pemain[]" class="form-control" multiple="multiple">
+                                        @foreach ($post->pemains as $p)
+                                            <option value="{{$g->nama}}" selected="selected">{{$p->nama}}</option>                                            
+                                        @endforeach
+                                        @foreach ($pemain as $p)
+                                            <option value="{{$g->nama}}">{{$p->nama}}</option>                                            
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" name="sinopsis" id="isi" cols="30" rows="10" placeholder="sinopsis"
+                                    >{{$post->sinopsis}}</textarea>
                                     @error('isi')
                                         <div class="alert alert-danger">
                                             {{ $message }}
@@ -68,14 +85,14 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="datetime" class="form-control" name="tahun" id="tahun" placeholder="Year Released"></input>
+                                    <input type="datetime" class="form-control" name="tahun" id="tahun" placeholder="Year Released" value="{{$post->tahun}}"></input>
                                     @error('tahun')
                                         <div class="alert alert-danger">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
-                                <button type="submit" class="btn btn-primary">Edit</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </form>
                         </div>
                     </div>
@@ -85,3 +102,20 @@
     </div>   
 </section>
 @endsection
+
+@push('script')
+<script>
+    $(document).ready(function () {
+        $("#genre").select2({
+            placeholder: 'Genre',
+            tags: true,
+            tokenSeparators: [',']
+        });
+        $("#pemain").select2({
+            placeholder: 'pemain',
+            tags: true,
+            tokenSeparators: [',']
+        });
+    });
+</script>
+@endpush

@@ -30,11 +30,12 @@ class HomeController extends Controller
     }
     public function homepage()
     {
-        $post = Post_film::orderBy('created_at', 'DESC')->get();
+        $post = Post_film::latest()->get();
+        $post_header = Post_film::take(3)->latest()->get();
         $context = ([
             'page'  => 'home',
         ]);
-        return view('index', compact('post', 'context'));
+        return view('index', compact('post', 'context', 'post_header'));
     }
 
     public function show($id)
