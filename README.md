@@ -16,7 +16,7 @@
 </ul>
 
 <h2>LINK DEPLOY</h2>
-<a href="http://obscure-oasis-28828.herokuapp.com/"></a>
+<a href="http://obscure-oasis-28828.herokuapp.com/">Link Website</a>
 
 <h2>ERD</h2>
 <img src="public/img/erd.png" alt="Desain ERD">
