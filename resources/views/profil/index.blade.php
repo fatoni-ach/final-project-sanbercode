@@ -6,7 +6,7 @@
             <div class="col-lg-12 text-center">
                 <div class="normal__breadcrumb__text">
                     <h2>Profile</h2>
-                    <p>Hello {{$user->profil->nama}}</p>
+                    <p>Hello, {{$user->profil->nama}}</p>
                 </div>
             </div>
         </div>
@@ -68,6 +68,7 @@
                                     @endforelse
                                 </ul>
                                 <h5><a href="{{ route('homepage_show', $p->id )}}">{{$p->judul}}</a></h5>
+                                <a href="{{Route('post.delete', '$user->profil->post_films as $p')}}" class="site-btn btn-warning mt-2">Delete Post</a>
                             </div>
                         </div>
                     </div>

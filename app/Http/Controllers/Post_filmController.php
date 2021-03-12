@@ -110,6 +110,6 @@ class Post_filmController extends Controller
     public function destroy($id)
     {
         Post_film::destroy($id);
-        return redirect('homepage');
+        return redirect('profil.index');
     }
 }
