@@ -26,7 +26,7 @@
                         <p class="text-light mb-1">Tanggal lahir : {{$user->profil->tgl_lahir}}</p>
                         @endauth
                 </div>
-                <a href="{{Route('profil.edit')}}" class="btn btn-danger mt-2">Update Profil</a>
+                <a href="{{Route('profil.edit')}}" class="site-btn btn-warning mt-2 ml-4">Update Profil</a>
             </div>
         </div>
     </div>
@@ -68,7 +68,10 @@
                                     @endforelse
                                 </ul>
                                 <h5><a href="{{ route('homepage_show', $p->id )}}">{{$p->judul}}</a></h5>
-                                <a href="{{Route('post.delete', '$user->profil->post_films as $p')}}" class="site-btn btn-warning mt-2">Delete Post</a>
+                                <form action="{{route('profil.index')}}" method="DELETE">
+                                @csrf
+                                <a href="{{Route('post.delete', $id ?? '')}}" class="site-btn btn-warning mt-2">Delete Post</a>
+                                </form>
                             </div>
                         </div>
                     </div>
