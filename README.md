@@ -19,7 +19,7 @@
 <p><a href=""></a></p>
 
 <h2>ERD</h2>
-<img src="{{asset('img/erd.png')}}" alt="Desain ERD">
+<img src="'public/img/erd.png'" alt="Desain ERD">
 
 <h2>TEMPLATE</h2>
 <a href="https://technext.github.io/anime/index.html">Anime By Colorlib</a>
