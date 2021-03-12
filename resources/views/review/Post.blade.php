@@ -108,6 +108,16 @@
 @endsection
 
 @push('script')
+<script src="{{ asset('sweetalert/dist/sweetalert2.all.min.js') }}"></script>
+@if (Session::has('sukses'))
+    <script>
+        Swal.fire(
+        'Succes!',
+        'Postingan Berhasil dibuat',
+        'success'
+        )
+    </script>
+@endif
 <script>
     $(document).ready(function () {
         $("#genre").select2({

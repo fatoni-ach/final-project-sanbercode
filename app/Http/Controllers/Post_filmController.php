@@ -80,7 +80,7 @@ class Post_filmController extends Controller
 
         $optimizer = new OptimizeImage();
         $optimizer->medium(base_path().'/public/'.$directory);
-
+        $request->session()->flash('sukses', 'Postingan berhasil dibuat');
         return redirect()->back();
     }
 
