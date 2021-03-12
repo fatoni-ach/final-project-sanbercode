@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('contentsatu')
-<section class="normal-breadcrumb set-bg" data-setbg=" {{ asset('/anime/img/normal-breadcrumb.jpg') }} ">
+<section class="normal-breadcrumb set-bg" data-setbg=" {{ asset('/anime/img/Movie.jpg') }} ">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">

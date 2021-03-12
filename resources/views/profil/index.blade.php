@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('contentsatu')
+<<<<<<< Updated upstream
 <section class="normal-breadcrumb set-bg" data-setbg="{{ asset('img/post_film/pattern.png') }}">
     <div class="container">
         <div class="row">

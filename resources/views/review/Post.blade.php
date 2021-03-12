@@ -1,5 +1,19 @@
 @extends('layouts.master')
 @section('contentsatu')
+<section class="normal-breadcrumb set-bg" data-setbg="{{ asset('/anime/img/Movie.jpg') }}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="normal__breadcrumb__text">
+                    <h2>Make New Post!</h2>
+                    <p>Hello, Start creating new review</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@endsection
+@section('contentdua')
 <section class="anime-details spad">
     <div class="container">
         <div class="anime__details__content">
