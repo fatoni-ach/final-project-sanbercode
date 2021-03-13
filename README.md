@@ -12,7 +12,7 @@
 
 <h2>LINK VIDEO DEMO</h2>
 <ul>
-    <li>Google Drive : <a href=""></a></li>
+    <li>Google Drive : <a href="https://drive.google.com/drive/folders/1wEq2hx5MeCJEZy_IBi-sz5xbGQOTi-fD?usp=sharing">Link Demo</a></li>
 </ul>
 
 <h2>LINK DEPLOY</h2>
